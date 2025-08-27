@@ -1,0 +1,76 @@
+{% extends "master.html" %}
+{% block main_content %}
+<div class="container py-5">
+  <h2 class="mb-4">Your Cart</h2>
+
+  <!-- DESKTOP/TABLET (md and up) -->
+  <div class="table-responsive d-none d-md-block">
+    <table class="table cart-table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in mergedCart" :key="'d'+index">
+          <td class="align-middle">
+            <img class="img-fluid cart-img" :src="item.image" alt="Product">
+          </td>
+          <td class="align-middle">[[ item.title ]]</td>
+          <td class="align-middle">$[[ item.price ]]</td>
+          <td class="align-middle">
+            <input type="number"
+                   v-model.number="item.quantity"
+                   @input="item.total = (item.price * item.quantity).toFixed(2); saveMergedToStorage()"
+                   min="1"
+                   class="form-control form-control-sm w-auto">
+          </td>
+          <td class="align-middle font-weight-bold">$[[ item.total ]]</td>
+          <td class="align-middle">
+            <button @click="removeItemCart(index)" class="btn btn-danger btn-sm">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHONE VIEW (under md) -->
+  <div class="d-md-none">
+    <div class="card mb-2" v-for="(item, index) in mergedCart" :key="'m'+index">
+      <div class="card-body d-flex">
+        <img class="cart-thumb mr-3" :src="item.image" alt="Product">
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-start">
+            <h6 class="mb-1 text-break">[[ item.title ]]</h6>
+            <button @click="removeItemCart(index)" class="btn btn-link text-danger p-0">Remove</button>
+          </div>
+          <div class="small text-muted mb-2">$[[ item.price ]] each</div>
+
+          <div class="d-flex align-items-center">
+            <input type="number"
+                   v-model.number="item.quantity"
+                   @input="item.total = (item.price * item.quantity).toFixed(2); saveMergedToStorage()"
+                   min="1"
+                   class="form-control form-control-sm"
+                   style="max-width:90px">
+            <div class="ml-auto font-weight-bold">$[[ item.total ]]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total / Checkout -->
+  <div class="pt-3 mt-2 border-top">
+    <h5>Total: <span class="text-danger">$[[ grandTotal ]]</span></h5>
+    <a href="/send"
+       @click.prevent="validateBeforeCheckOut()"
+       class="btn btn-success btn-checkout">Proceed to Checkout</a>
+  </div>
+</div>
+{% endblock %}

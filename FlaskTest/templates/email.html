@@ -1,0 +1,83 @@
+{% extends "master.html" %}
+{% block main_content %}
+    <div class="container py-5">
+        <h2 class="mb-4">Check Out</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mb-3">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <div class="row">
+            <!-- Form -->
+            <div class="col-12 col-lg-7">
+                <form method="POST" action="/send" class="needs-validation"
+                      novalidate @submit.prevent="submitCheckout">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="co-name">Name</label>
+                            <input id="co-name" name="name" type="text"
+                                   class="form-control" autocomplete="name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="co-email">Email</label>
+                            <input id="co-email" name="email" type="email" class="form-control"
+                                   required @input="clearEmailValidity">
+
+                            <div class="invalid-feedback">
+                                Please enter a valid email (e.g., name@example.com).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="co-address">Address</label>
+                        <textarea id="co-address" name="address" rows="3"
+                                  class="form-control" autocomplete="street-address" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="co-phone">Phone Number</label>
+                        <input id="co-phone" name="phone" type="tel" inputmode="tel"
+                               pattern="^\+?[0-9\s\-()]{7,}$"
+                               class="form-control" autocomplete="tel" required>
+                    </div>
+
+                    <!-- Send cart/state to Flask -->
+                    <input type="hidden" name="cart_data" :value="JSON.stringify(mergedCart)">
+                    <input type="hidden" name="total" :value="Number(grandTotal)">
+
+                    <button type="submit" class="btn btn-success" :disabled="submitting">
+                        <span v-if="submitting" class="spinner-border spinner-border-sm mr-1"></span>
+                        Confirm
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order summary -->
+            <div class="col-12 col-lg-5 mt-4 mt-lg-0">
+                <div class="card">
+                    <div class="card-header">Order Summary</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center"
+                            v-for="it in mergedCart" :key="it.id || it.title">
+                            <img :src="it.image" alt="" style="width:48px;height:48px;object-fit:contain" class="mr-2">
+                            <div class="flex-grow-1 text-truncate">
+                                [[ it.title ]]
+                                <div class="small text-muted">x[[ it.quantity ]]</div>
+                            </div>
+                            <div class="font-weight-bold ml-2">
+                                $[[ (it.price * it.quantity).toFixed(2) ]]
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="card-body d-flex justify-content-between">
+                        <strong>Total</strong>
+                        <strong class="text-danger">$[[ grandTotal ]]</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

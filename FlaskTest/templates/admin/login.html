@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% block main_content %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <div class="container" style="max-width:420px">
+        <h4 class="mb-3">Admin Login</h4>
+
+        <form method="post" class="card p-3">
+            <div class="form-group">
+                <label>Username</label>
+                <input name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input name="password" type="password" class="form-control" required>
+            </div>
+            <button class="btn btn-primary btn-block mt-2">Sign In</button>
+        </form>
+
+    </div>
+{% endblock %}

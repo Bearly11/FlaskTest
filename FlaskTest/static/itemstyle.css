@@ -1,0 +1,282 @@
+.card:hover .btn-add-cart {
+    transform: scale(1.05);
+}
+
+
+.price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #e63946;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.btn-add-cart {
+    background-color: #28a745;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.btn-add-cart:hover {
+    background-color: #218838;
+}
+
+.category-badge {
+    position: absolute;
+    top: 5px;
+
+}
+.slide-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+
+
+
+.card-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.support-header {
+    background: #2563eb;
+    color: #fff;
+}
+
+.faq-header {
+    background: #10b981;
+    color: #fff;
+}
+
+.form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #2563eb;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.badge-support {
+    background: #2563eb;
+    color: #fff;
+    padding: 0.4em 0.7em;
+    border-radius: 0.5em;
+    margin-right: 0.5em;
+}
+
+.accordion .card-header {
+    background-color: #f1f5f9;
+}
+
+.map-container {
+    height: 370px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+/**/
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-rows: repeat(2, 1fr);    /* 2 rows */
+  gap: 10px;
+  height: 100%;
+    width: 360px;
+    padding: 12px;
+    margin-left: 100px;
+}
+.featured-card {
+  position: relative;
+  border: 2px solid #e5e7eb;   /* light gray border */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+/* keep tiles square */
+.featured-card::before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* 1:1 ratio */
+}
+
+/* image fills its square */
+.featured-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crop nicely */
+  display: block;
+    margin: auto;
+}
+.carousel {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+
+}
+
+
+.featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* show overlay on hover */
+.featured-card:hover .featured-overlay {
+  opacity: 1;
+}
+
+/* style text inside overlay */
+.featured-overlay h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.featured-overlay .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+/* === RESPONSIVE OVERRIDES (append once at the end) === */
+
+/* Make navbar search friendly on small screens */
+@media (max-width: 991.98px) {
+  .navbar .form-inline { width: 100%; margin-top: .5rem; }
+  .navbar .form-inline .form-control { width: 100%; }
+}
+
+/* Pin the category badge neatly */
+.category-badge { position: absolute; top: 6px; right: 6px; }
+
+/* Product images a bit shorter on phones */
+@media (max-width: 575.98px) {
+  .card-img-top { height: 180px; } /* was 220px */
+}
+
+/* Featured grid: remove fixed 360px width and left margin that broke mobile */
+.featured-grid {
+  width: 100% !important;
+  margin: 0 !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.carousel, .carousel-inner { border-radius: 12px; overflow: hidden; }
+
+/* Carousel: avoid hard-coded height on the wrapper */
+.slide-img { height: auto !important; }
+
+/* Control actual hero <img> height responsively */
+.carousel-item .hero-img {
+  width: 100%;
+  height: clamp(200px, 30vw, 420px);
+  object-fit: cover;
+  display: block;
+}
+
+/* General media scaling */
+img, video { max-width: 100%; height: auto; }
+
+/* Give the carousel a fixed 16:9 area */
+.carousel--ratio { position: relative; }
+.carousel--ratio::before { content:""; display:block; padding-top:56.25%; } /* 16:9 */
+
+.carousel--ratio .carousel-inner,
+.carousel--ratio .carousel-item,
+.carousel--ratio .carousel-item img {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+}
+.carousel--ratio .carousel-item img { object-fit: cover; }
+
+
+/* Desktop table product image */
+.cart-img { max-width: 110px; max-height: 110px; object-fit: contain; }
+
+/* Mobile card thumbnail */
+.cart-thumb { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+
+/* Make checkout button full-width on phones */
+.btn-checkout { min-width: 220px; }
+@media (max-width: 575.98px) {
+  .btn-checkout { width: 100%; }
+}
+
+/* Optional: keep long titles from breaking layouts */
+.text-break { word-break: break-word; }
+
+
+/* Comfortable tap targets on mobile */
+.form-control { min-height: 44px; }
+
+/* Make the confirm button full-width on phones */
+.btn-checkout { min-width: 240px; }
+@media (max-width: 575.98px) {
+  .btn-checkout { width: 100%; }
+}
+
+.spinner-border-sm { vertical-align: text-bottom; }
+
+
+/* --- Product page responsive helpers --- */
+.product-img { max-height: clamp(240px, 40vh, 520px); object-fit: contain; }
+
+@media (max-width: 575.98px) {
+  .product-title { font-size: 1.25rem; }
+  .btn-add-cart { width: 100%; }   /* full-width on phones */
+}
+
+/* Make the +/- input look/tap better on mobile */
+.form-control { min-height: 44px; }
+
+
+

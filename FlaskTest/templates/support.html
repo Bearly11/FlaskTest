@@ -1,0 +1,127 @@
+{% extends "master.html" %}
+{% block main_content %}
+	<div class="container py-5">
+    <h2 class="text-center text-primary mb-3"><i class="far fa-comments mr-2"></i>Contact & Support</h2>
+    <p class="text-center text-muted mb-5 lead">We’re here to help! Reach out with any questions or feedback.</p>
+    <div class="row">
+      <!-- Contact Form -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-header support-header">
+            <i class="fas fa-envelope-open-text mr-2"></i>Contact Support
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="yourName">Your Name</label>
+                <input type="text" class="form-control" id="yourName" placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" class="form-control" id="emailAddress" placeholder="you@example.com">
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" placeholder="Subject">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Tell us how we can help..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-paper-plane mr-1"></i>Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Info & FAQs -->
+      <div class="col-lg-6 mb-4">
+        <div class="card mb-4">
+          <div class="card-header" style="background: #10b981; color: #fff;">
+            <i class="fas fa-tools mr-2"></i>Support Info
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <span class="badge badge-support"><i class="fas fa-envelope mr-1"></i>Email</span>support@eshop.com
+            </div>
+            <div class="mb-3">
+              <span class="badge badge-support"><i class="fas fa-phone-alt mr-1"></i>Phone</span>+1 (234) 567-8901
+            </div>
+            <div>
+              <span class="badge badge-support"><i class="fas fa-comments mr-1"></i>Live Chat</span>9AM - 6PM (Mon-Fri)
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="card">
+          <div class="card-header faq-header">
+            <i class="far fa-question-circle mr-2"></i>FAQs
+          </div>
+          <div class="card-body p-0">
+            <div id="faqAccordion" class="accordion">
+              <div class="card">
+                <div class="card-header" id="faqOne">
+                  <h6 class="mb-0">
+                    <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse" data-target="#collapseOne">
+                      How do I track my order?
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseOne" class="collapse" data-parent="#faqAccordion">
+                  <div class="card-body">
+                    You'll receive a tracking link via email after your order.
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="faqTwo">
+                  <h6 class="mb-0">
+                    <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                      Can I return a product?
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#faqAccordion">
+                  <div class="card-body">
+                    Yes, please see our <a href="#" class="text-primary font-weight-bold">return policy</a>.
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="faqThree">
+                  <h6 class="mb-0">
+                    <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse" data-target="#collapseThree">
+                      Urgent help?
+                    </button>
+                  </h6>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#faqAccordion">
+                  <div class="card-body">
+                    Please call us or use our live chat.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Map -->
+      <div class="col-12">
+        <div class="map-container mt-5">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.8127188984886!2d104.88821909230082!3d11.565279663659505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951a10aca5441%3A0xd31efc18b859153e!2sSpean%20Meas%20Hotel%2C%20Siem%20Reap!5e0!3m2!1sen!2sau!4v1752014787487!5m2!1sen!2sau"
+            width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
